@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { observer, Provider } from 'mobx-react';
-import store from 'stores/appStore';
+import store from 'stores';
 import Dashboard from 'components/Dashboard';
 
 @observer
