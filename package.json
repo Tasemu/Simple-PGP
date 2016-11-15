@@ -4,7 +4,16 @@
   "description": "A minimal Electron application",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "ENV=development electron .",
+    "server": "concurrently -k 'babel-node server.js' 'npm start'"
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "stage-0",
+      "react"
+    ],
+    "plugins": ["transform-decorators-legacy"]
   },
   "repository": "https://github.com/electron/electron-quick-start",
   "keywords": [
@@ -17,6 +26,25 @@
   "author": "GitHub",
   "license": "CC0-1.0",
   "devDependencies": {
-    "electron": "^1.4.1"
+    "babel-cli": "^6.18.0",
+    "babel-loader": "^6.2.7",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-polyfill": "^6.16.0",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.16.0",
+    "babel-preset-stage-0": "^6.16.0",
+    "concurrently": "^3.1.0",
+    "electron": "^1.4.1",
+    "express": "^4.14.0",
+    "webpack": "^1.13.3",
+    "webpack-dev-middleware": "^1.8.4",
+    "webpack-hot-middleware": "^2.13.2",
+    "webpack-target-electron-renderer": "^0.4.0"
+  },
+  "dependencies": {
+    "mobx": "^2.6.2",
+    "mobx-react": "^3.5.9",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2"
   }
 }
