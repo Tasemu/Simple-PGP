@@ -13,7 +13,10 @@
       "stage-0",
       "react"
     ],
-    "plugins": ["transform-decorators-legacy"]
+    "plugins": [
+      "transform-decorators-legacy",
+      "react-hot-loader/babel"
+    ]
   },
   "repository": "https://github.com/electron/electron-quick-start",
   "keywords": [
@@ -36,6 +39,7 @@
     "concurrently": "^3.1.0",
     "electron": "^1.4.1",
     "express": "^4.14.0",
+    "react-hot-loader": "^3.0.0-alpha.8",
     "webpack": "^1.13.3",
     "webpack-dev-middleware": "^1.8.4",
     "webpack-hot-middleware": "^2.13.2",

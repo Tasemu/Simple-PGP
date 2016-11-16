@@ -5,6 +5,7 @@ var path = require('path');
 var config = {
   entry: [
     'webpack-hot-middleware/client?reload=true&path=http://localhost:9000/__webpack_hmr',
+    'react-hot-loader/patch',
     './src/index',
   ],
   module: {

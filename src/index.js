@@ -1,17 +1,22 @@
 import 'babel-polyfill'; // generators
 import React from 'react';
 import { render as renderReact } from 'react-dom';
-var App = require('./components/App').default;
+import App from './components/App';
+import { AppContainer } from 'react-hot-loader';
 
-const render = (Component) => {
-  renderReact(<Component />, document.getElementById('root'));
-};
-
-render(App);
+renderReact(
+  <AppContainer>
+    <App />
+  </AppContainer>
+  , document.getElementById('root'));
 
 if (module.hot) {
-  var newApp = require('./components/App').default;
-  module.hot.accept('./components/App', function() {
-    render(newApp);
+  module.hot.accept('./components/App', () => {
+    var NewApp = require('./components/App').default;
+    renderReact(
+      <AppContainer>
+        <NewApp />
+      </AppContainer>
+    , document.getElementById('root'))
   });
 }
