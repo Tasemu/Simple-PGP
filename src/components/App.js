@@ -8,6 +8,14 @@ import { Router, Route, hashHistory, IndexRedirect } from 'react-router';
 import Sidebar from 'components/Sidebar';
 import { css, StyleSheet } from 'aphrodite';
 import { colours } from 'constants.js';
+import {enableLogging} from 'mobx-logger';
+
+enableLogging({
+  action: true,
+  reaction: true,
+  transaction: true,
+  compute: true
+});
 
 const componentStyles = StyleSheet.create({
   component: {

@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import { observer, inject } from 'mobx-react';
 
+@inject('appStore')
+@observer
 export default class Login extends Component {
 
   render () {

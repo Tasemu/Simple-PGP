@@ -50,6 +50,7 @@
     "css-loader": "^0.25.0",
     "fs-jetpack": "^0.10.2",
     "mobx": "^2.6.2",
+    "mobx-logger": "^0.3.1",
     "mobx-react": "^3.5.9",
     "normalize.css": "^5.0.0",
     "react": "^15.3.2",
