@@ -3,6 +3,7 @@ import React from 'react';
 import { render as renderReact } from 'react-dom';
 import App from './components/App';
 import { AppContainer } from 'react-hot-loader';
+require('normalize.css');
 
 renderReact(
   <AppContainer>

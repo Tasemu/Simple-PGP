@@ -3,12 +3,12 @@ import { observer, inject } from 'mobx-react';
 
 @inject('appStore')
 @observer
-export default class Dashboard extends Component {
+export default class Main extends Component {
 
   render () {
     return (
       <div>
-        <h1>Dashboard</h1>
+        {this.props.children}
       </div>
     );
   }

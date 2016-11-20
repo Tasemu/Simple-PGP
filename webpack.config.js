@@ -16,6 +16,10 @@ var config = {
     }, {
       test: /\.png|\.svg$/,
       loaders: ['file-loader']
+    },
+    {
+      test: /\.css$/,
+      loader: "style-loader!css-loader"
     }]
   },
   output: {

@@ -46,9 +46,15 @@
     "webpack-target-electron-renderer": "^0.4.0"
   },
   "dependencies": {
+    "aphrodite": "^1.1.0",
+    "css-loader": "^0.25.0",
+    "fs-jetpack": "^0.10.2",
     "mobx": "^2.6.2",
     "mobx-react": "^3.5.9",
+    "normalize.css": "^5.0.0",
     "react": "^15.3.2",
-    "react-dom": "^15.3.2"
+    "react-dom": "^15.3.2",
+    "react-router": "^3.0.0",
+    "style-loader": "^0.13.1"
   }
 }
