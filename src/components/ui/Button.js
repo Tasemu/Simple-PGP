@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { css, StyleSheet } from 'aphrodite';
-import { colours } from 'constants.js';
+import { colours } from 'utils/constants';
 
 const componentStyles = StyleSheet.create({
   button: {
@@ -11,13 +11,17 @@ const componentStyles = StyleSheet.create({
     margin: 5,
     borderRadius: 2,
     textAlign: 'center',
-    cursor: 'pointer'
-  }
+    cursor: 'pointer',
+  },
 });
 
 export default class Button extends Component {
 
-  render () {
+  static propTypes = {
+    text: PropTypes.String,
+  }
+
+  render() {
     const { text, ...otherProps } = this.props;
     return (
       <a {...otherProps} className={css(componentStyles.button)}>{text}</a>

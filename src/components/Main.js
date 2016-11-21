@@ -5,8 +5,16 @@ import { observer, inject } from 'mobx-react';
 @observer
 export default class Main extends Component {
 
-  render () {
-    return this.props.children;
+  static propTypes = {
+    children: PropTypes.element,
+  }
+
+  render() {
+    return (
+      <div style={{ height: '100%' }}>
+        {this.props.children}
+      </div>
+    );
   }
 
 }

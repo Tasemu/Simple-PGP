@@ -1,6 +1,6 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { css, StyleSheet } from 'aphrodite';
-import { colours } from 'constants.js';
+import { colours } from 'utils/constants';
 
 const componentStyles = StyleSheet.create({
   input: {
@@ -15,14 +15,14 @@ const componentStyles = StyleSheet.create({
     marginBottom: 15,
     display: 'block',
     '::-webkit-input-placeholder': {
-      color: colours.midnightBlue
-    }
-  }
+      color: colours.midnightBlue,
+    },
+  },
 });
 
 export default class Input extends Component {
 
-  render () {
+  render() {
     return (
       <input {...this.props} className={css(componentStyles.input)} />
     );

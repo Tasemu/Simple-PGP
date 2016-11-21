@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
 import { observer, inject, PropTypes as MobxPropTypes } from 'mobx-react';
 import { hashHistory } from 'react-router';
 import Button from 'components/ui/Button';
@@ -12,8 +11,8 @@ const componentStyles = StyleSheet.create({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    width: '100%'
-  }
+    width: '100%',
+  },
 });
 
 @inject('appStore')
@@ -21,13 +20,13 @@ const componentStyles = StyleSheet.create({
 export default class Login extends Component {
 
   static propTypes = {
-    appStore: MobxPropTypes.objectOrObservableObject.isRequired
+    appStore: MobxPropTypes.objectOrObservableObject.isRequired,
   }
 
   state = {
     name: '',
     email: '',
-    passphrase: ''
+    passphrase: '',
   }
 
   handleGenerateNewKeypair = () => {
@@ -48,7 +47,7 @@ export default class Login extends Component {
     this.setState({ passphrase: e.target.value });
   }
 
-  render () {
+  render() {
     const { appStore } = this.props;
     const content = appStore.loading ? (
       <Spinner spinnerName="rotating-plane" />

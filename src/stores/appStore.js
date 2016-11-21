@@ -1,13 +1,14 @@
 import { observable, autorunAsync, toJS, computed, action } from 'mobx';
+
 const remote = require('electron').remote;
 const jetpack = require('fs-jetpack');
-const appStoreHydrated = jetpack.read(`${remote.app.getPath('home')}/simplepgp.json`, 'json');
-
 const openpgp = require('openpgp');
 
-class appStore {
+const appStoreHydrated = jetpack.read(`${remote.app.getPath('home')}/simplepgp.json`, 'json');
 
-  constructor ({ name = null, email = null, publicKey = null, privateKey = null }) {
+class AppStore {
+
+  constructor({ name = null, email = null, publicKey = null, privateKey = null }) {
     this.name = name;
     this.email = email;
     this.publicKey = publicKey;
@@ -20,25 +21,25 @@ class appStore {
   @observable privateKey;
   @observable loading = false;
 
-  @computed get loggedIn () {
+  @computed get loggedIn() {
     return !!this.email;
   }
 
-  @computed get dehydrate () {
+  @computed get dehydrate() {
     return {
       name: this.name,
       email: this.email,
       publicKey: this.publicKey,
-      privateKey: this.privateKey
-    }
+      privateKey: this.privateKey,
+    };
   }
 
-  @action('generateKeyPair') generateKeyPair (name, email, passphrase) {
+  @action('generateKeyPair') generateKeyPair(name, email, passphrase) {
     this.loading = true;
     return openpgp.generateKey({
-        userIds: [{ name, email }],
-        numBits: 4096,
-        passphrase
+      userIds: [{ name, email }],
+      numBits: 4096,
+      passphrase,
     }).then(action('generateKeyPair-callback', (key) => {
       this.loading = false;
       this.name = name;
@@ -49,7 +50,7 @@ class appStore {
   }
 }
 
-const singleton = window.appStore = new appStore(appStoreHydrated || {});
+const singleton = new AppStore(appStoreHydrated || {});
 
 autorunAsync(() => {
   jetpack.write(`${remote.app.getPath('home')}/simplepgp.json`, toJS(singleton.dehydrate));

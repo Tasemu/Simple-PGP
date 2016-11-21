@@ -1,36 +1,34 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { observer, Provider } from 'mobx-react';
 import appStore from 'stores/appStore';
 import Dashboard from 'components/Dashboard';
 import Login from 'components/Login';
 import Main from 'components/Main';
 import { Router, Route, hashHistory, IndexRedirect } from 'react-router';
-import Sidebar from 'components/Sidebar';
 import { css, StyleSheet } from 'aphrodite';
-import { colours } from 'constants.js';
-import {enableLogging} from 'mobx-logger';
+import { colours } from 'utils/constants';
+import { enableLogging } from 'mobx-logger';
 
 enableLogging({
   action: true,
   reaction: true,
   transaction: true,
-  compute: true
+  compute: true,
 });
 
 const componentStyles = StyleSheet.create({
   component: {
     display: 'flex',
     height: '100%',
-    backgroundColor: colours.clouds
+    backgroundColor: colours.clouds,
   },
 });
 
 const checkAuth = (nextState, replace) => {
-  console.log('redirecting to login')
   if (!appStore.loggedIn) {
     replace('/login');
   }
-}
+};
 
 const routes = (
   <Route path="/" component={Main}>
@@ -43,7 +41,7 @@ const routes = (
 @observer
 export default class App extends Component {
 
-  render () {
+  render() {
     return (
       <Provider appStore={appStore}>
         <div className={css(componentStyles.component)}>

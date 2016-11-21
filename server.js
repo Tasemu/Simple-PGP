@@ -11,8 +11,8 @@ const app = express();
 app.use(webpackDevMiddleware(compiler, {
   publicPath: config.output.publicPath,
   stats: {
-    colors: true
-  }
+    colors: true,
+  },
 }));
 
 app.use(webpackHotMiddleware(compiler));
