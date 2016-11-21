@@ -53,9 +53,11 @@
     "mobx-logger": "^0.3.1",
     "mobx-react": "^3.5.9",
     "normalize.css": "^5.0.0",
+    "openpgp": "^2.3.5",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-router": "^3.0.0",
+    "react-spinkit": "^1.1.11",
     "style-loader": "^0.13.1"
   }
 }

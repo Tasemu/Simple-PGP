@@ -6,11 +6,7 @@ import { observer, inject } from 'mobx-react';
 export default class Main extends Component {
 
   render () {
-    return (
-      <div>
-        {this.props.children}
-      </div>
-    );
+    return this.props.children;
   }
 
 }
