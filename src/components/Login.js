@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { observer, inject, PropTypes as MobxPropTypes } from 'mobx-react';
 import { hashHistory } from 'react-router';
-import Button from 'components/ui/Button';
-import Input from 'components/ui/Input';
 import { css, StyleSheet } from 'aphrodite';
 import Spinner from 'react-spinkit';
+
+import Button from 'components/ui/Button';
+import Input from 'components/ui/Input';
+import { colours } from 'utils/constants';
 
 const componentStyles = StyleSheet.create({
   component: {
@@ -12,6 +14,14 @@ const componentStyles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     width: '100%',
+  },
+  controls: {
+    backgroundColor: colours.white,
+    padding: 15,
+    borderRadius: 2,
+    display: 'flex',
+    flexDirection: 'column',
+    width: 300,
   },
 });
 

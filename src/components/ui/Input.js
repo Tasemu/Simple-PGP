@@ -4,16 +4,14 @@ import { colours } from 'utils/constants';
 
 const componentStyles = StyleSheet.create({
   input: {
-    background: colours.clouds,
     border: 'none',
     borderBottom: `1px solid ${colours.midnightBlue}`,
-    padding: 5,
-    fontSize: 18,
     color: colours.midnightBlue,
     outline: 'none',
-    margin: 5,
+    lineHeight: '26px',
     marginBottom: 15,
     display: 'block',
+    // width: '100%',
     '::-webkit-input-placeholder': {
       color: colours.midnightBlue,
     },

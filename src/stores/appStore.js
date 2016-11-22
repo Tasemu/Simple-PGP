@@ -1,4 +1,5 @@
 import { observable, autorunAsync, toJS, computed, action } from 'mobx';
+import { readPublicKey } from 'utils/pgp';
 
 const remote = require('electron').remote;
 const jetpack = require('fs-jetpack');
@@ -8,11 +9,18 @@ const appStoreHydrated = jetpack.read(`${remote.app.getPath('home')}/simplepgp.j
 
 class AppStore {
 
-  constructor({ name = null, email = null, publicKey = null, privateKey = null }) {
+  constructor({
+    name = null,
+    email = null,
+    publicKey = null,
+    privateKey = null,
+    friends = [],
+  }) {
     this.name = name;
     this.email = email;
     this.publicKey = publicKey;
     this.privateKey = privateKey;
+    this.friends = friends;
   }
 
   @observable name;
@@ -20,6 +28,12 @@ class AppStore {
   @observable publicKey;
   @observable privateKey;
   @observable loading = false;
+  @observable addFriendMode = false;
+  @observable friends = [];
+
+  @computed get friendsCount() {
+    return this.friends.length;
+  }
 
   @computed get loggedIn() {
     return !!this.email;
@@ -31,6 +45,7 @@ class AppStore {
       email: this.email,
       publicKey: this.publicKey,
       privateKey: this.privateKey,
+      friends: this.friends,
     };
   }
 
@@ -47,6 +62,10 @@ class AppStore {
       this.publicKey = key.publicKeyArmored;
       this.privateKey = key.privateKeyArmored;
     }));
+  }
+
+  @action('addFriend') addFriend(publicKey) {
+    this.friends.push(readPublicKey(publicKey));
   }
 }
 

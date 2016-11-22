@@ -1,5 +1,14 @@
 import React, { Component, PropTypes } from 'react';
 import { observer, inject } from 'mobx-react';
+import { css, StyleSheet } from 'aphrodite';
+
+const componentStyles = StyleSheet.create({
+  main: {
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+  },
+});
 
 @inject('appStore')
 @observer
@@ -11,7 +20,7 @@ export default class Main extends Component {
 
   render() {
     return (
-      <div style={{ height: '100%' }}>
+      <div className={css(componentStyles.main)}>
         {this.props.children}
       </div>
     );

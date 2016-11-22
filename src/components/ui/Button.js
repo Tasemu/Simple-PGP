@@ -8,7 +8,7 @@ const componentStyles = StyleSheet.create({
     backgroundColor: colours.midnightBlue,
     color: colours.clouds,
     padding: 15,
-    margin: 5,
+    marginBottom: 10,
     borderRadius: 2,
     textAlign: 'center',
     cursor: 'pointer',

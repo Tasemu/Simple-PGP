@@ -12,6 +12,8 @@ module.exports = {
       "react/jsx-filename-extension": "off",
       "import/no-extraneous-dependencies": "off",
       "import/no-unresolved": "off",
-      "import/extensions": "off"
+      "import/extensions": "off",
+      "jsx-a11y/no-static-element-interactions": "off",
+      "import/prefer-default-export": "off",
     }
 };
