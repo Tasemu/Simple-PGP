@@ -1,3 +1,5 @@
+import uuid from 'uuid';
+
 const openpgp = require('openpgp');
 
 export function readPublicKey(publicKey) {
@@ -7,6 +9,7 @@ export function readPublicKey(publicKey) {
   const name = userStr.substring(0, userStr.lastIndexOf(' '));
 
   return {
+    id: uuid(),
     name,
     email,
     publicKey,

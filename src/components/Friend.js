@@ -1,15 +1,21 @@
 import React, { Component, PropTypes } from 'react';
 import { css, StyleSheet } from 'aphrodite';
+import { Link } from 'react-router';
 import { colours } from 'utils/constants';
 
 const componentStyles = StyleSheet.create({
   friend: {
-    padding: 15,
-    cursor: 'pointer',
-    borderBottom: `1px solid ${colours.white}`,
-    color: colours.midnightBlue,
     display: 'flex',
     alignItems: 'center',
+    padding: 15,
+    borderBottom: `1px solid ${colours.white}`,
+    textDecoration: 'none',
+    cursor: 'pointer',
+    color: colours.midnightBlue,
+  },
+  friendActive: {
+    backgroundColor: colours.midnightBlue,
+    color: colours.clouds,
   },
   name: {
     fontSize: 14,
@@ -33,10 +39,14 @@ export default class Friend extends Component {
   render() {
     const { friend } = this.props;
     return (
-      <li className={css(componentStyles.friend)}>
+      <Link
+        className={css(componentStyles.friend)}
+        activeClassName={css(componentStyles.friendActive)}
+        to={`/dashboard/encrypt/${friend.id}`}
+      >
         <span className={css(componentStyles.name)}>{friend.name}</span>
         <span className={css(componentStyles.email)}>{friend.email}</span>
-      </li>
+      </Link>
     );
   }
 

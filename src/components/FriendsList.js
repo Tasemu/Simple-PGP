@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { observer, inject, PropTypes } from 'mobx-react';
+import { observer, inject, PropTypes as MobxPropTypes } from 'mobx-react';
 import { css, StyleSheet } from 'aphrodite';
 import { Link } from 'react-router';
 import { colours } from 'utils/constants';
@@ -36,22 +36,25 @@ const componentStyles = StyleSheet.create({
 export default class FriendsList extends Component {
 
   static propTypes = {
-    appStore: PropTypes.objectOrObservableObject.isRequired,
+    appStore: MobxPropTypes.objectOrObservableObject.isRequired,
   }
 
   toggleFriendMode = () => {
-    this.props.appStore.addFriendMode = !this.props.appStore.addFriendMode;
+    const { uiMode } = this.props.appStore;
+    this.props.appStore.uiMode = uiMode !== 'addFriend' ? 'addFriend' : 'default';
   }
 
   render() {
-    const { friends, addFriendMode } = this.props.appStore;
-    const friendComponents = friends.map(f => <Friend friend={f} key={f.email} />);
+    const { friends, uiMode } = this.props.appStore;
+    const friendComponents = friends.map(f => (
+      <Friend key={f.id} friend={f} />
+    ));
     const addFriendText = (
       <Link
         onClick={this.toggleFriendMode}
-        to={addFriendMode ? '/dashboard' : '/dashboard/addFriend'}
+        to={uiMode === 'addFriend' ? '/dashboard' : '/dashboard/addFriend'}
         className={css(componentStyles.addFriend)}
-      >{addFriendMode ? '- Cancel' : '+ Add Friend'}</Link>
+      >{uiMode === 'addFriend' ? '- Cancel' : '+ Add Friend'}</Link>
     );
 
     return (

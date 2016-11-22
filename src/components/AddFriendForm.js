@@ -50,7 +50,7 @@ export default class AddFriendForm extends Component {
     this.setState({
       key: '',
     });
-    this.props.appStore.addFriendMode = false;
+    this.props.appStore.uiMode = 'default';
     this.context.router.push('/dashboard');
     e.preventDefault();
   }

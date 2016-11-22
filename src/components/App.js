@@ -9,6 +9,7 @@ import Login from 'components/Login';
 import Main from 'components/Main';
 import Info from 'components/ui/Info';
 import AddFriendForm from 'components/AddFriendForm';
+import EncryptMessage from 'components/EncryptMessage';
 import { colours } from 'utils/constants';
 
 enableLogging({
@@ -27,9 +28,16 @@ const componentStyles = StyleSheet.create({
 });
 
 const checkAuth = (nextState, replace) => {
+  console.log('uiMode', 'default');
+  appStore.uiMode = 'default';
   if (!appStore.loggedIn) {
     replace('/login');
   }
+};
+
+const setUiMode = (mode) => {
+  console.log('uiMode', mode);
+  appStore.uiMode = mode;
 };
 
 const routes = (
@@ -38,7 +46,8 @@ const routes = (
     <Route path="login" component={Login} />
     <Route path="dashboard" component={Dashboard} onEnter={checkAuth}>
       <IndexRoute component={Info} />
-      <Route path="addfriend" component={AddFriendForm} />
+      <Route path="addfriend" component={AddFriendForm} onEnter={() => setUiMode('addFriend')} />
+      <Route path="encrypt/:id" component={EncryptMessage} onEnter={() => setUiMode('encrypt')} />
     </Route>
   </Route>
 );

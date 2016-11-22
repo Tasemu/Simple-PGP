@@ -28,7 +28,7 @@ class AppStore {
   @observable publicKey;
   @observable privateKey;
   @observable loading = false;
-  @observable addFriendMode = false;
+  @observable uiMode = 'default';
   @observable friends = [];
 
   @computed get friendsCount() {
