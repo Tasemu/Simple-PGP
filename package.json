@@ -6,7 +6,9 @@
   "scripts": {
     "start": "ENV=development electron .",
     "prod": "electron .",
-    "server": "concurrently -k 'babel-node server.js' 'npm start'"
+    "server": "concurrently -k 'babel-node server.js' 'npm start'",
+    "package": "electron-packager . --platform mas --out ./bin",
+    "package-all": "electron-packager . --all --out ./bin"
   },
   "babel": {
     "presets": [
