@@ -12,6 +12,7 @@ import AddFriendForm from 'components/AddFriendForm';
 import EncryptMessage from 'components/EncryptMessage';
 import GetPublicKey from 'components/GetPublicKey';
 import Decrypt from 'components/Decrypt';
+import Import from 'components/Import';
 import { colours } from 'utils/constants';
 
 enableLogging({
@@ -44,6 +45,7 @@ const routes = (
   <Route path="/" component={Main}>
     <IndexRedirect to="/dashboard" />
     <Route path="login" component={Login} />
+    <Route path="import" component={Import} />
     <Route path="dashboard" component={Dashboard} onEnter={checkAuth}>
       <IndexRoute component={Info} onEnter={() => setUiMode('default')} />
       <Route path="addfriend" component={AddFriendForm} onEnter={() => setUiMode('addFriend')} />

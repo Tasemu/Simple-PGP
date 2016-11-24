@@ -64,6 +64,13 @@ class AppStore {
     }));
   }
 
+  @action('importKey') importKey(name, email, publicKeyArmored, privateKeyArmored) {
+    this.name = name;
+    this.email = email;
+    this.publicKey = publicKeyArmored;
+    this.privateKey = privateKeyArmored;
+  }
+
   @action('addFriend') addFriend(publicKey) {
     this.friends.push(readPublicKey(publicKey));
   }

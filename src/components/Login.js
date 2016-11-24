@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { observer, inject, PropTypes as MobxPropTypes } from 'mobx-react';
-import { hashHistory } from 'react-router';
+import { hashHistory, Link } from 'react-router';
 import { css, StyleSheet } from 'aphrodite';
 import Spinner from 'react-spinkit';
 
@@ -22,6 +22,17 @@ const componentStyles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     width: 300,
+  },
+  button: {
+    display: 'block',
+    backgroundColor: colours.midnightBlue,
+    color: colours.clouds,
+    padding: 15,
+    marginBottom: 10,
+    borderRadius: 2,
+    textAlign: 'center',
+    cursor: 'pointer',
+    textDecoration: 'none',
   },
 });
 
@@ -67,7 +78,7 @@ export default class Login extends Component {
         <Input value={this.state.email} onChange={this.handleChangeEmail} placeholder="Email Address" />
         <Input type="password" value={this.state.passphrase} onChange={this.handleChangePassphrase} placeholder="Passphrase" />
         <Button onClick={this.handleGenerateNewKeypair} text="Generate New Keypair" />
-        <Button text="Import An Existing Keypair" />
+        <Link className={css(componentStyles.button)} to="/import">Import An Existing Keypair</Link>
       </div>
     );
 
