@@ -33,6 +33,7 @@ const componentStyles = StyleSheet.create({
     textAlign: 'center',
     cursor: 'pointer',
     textTransform: 'uppercase',
+    fontSize: 14,
   },
   signWrapper: {
     padding: 15,
@@ -58,7 +59,7 @@ const componentStyles = StyleSheet.create({
 
 @inject('appStore')
 @observer
-export default class EncryptMessage extends Component {
+export default class GetPublicKey extends Component {
 
   static propTypes = {
     appStore: MobxPropTypes.objectOrObservableObject,

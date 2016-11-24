@@ -34,6 +34,7 @@ const componentStyles = StyleSheet.create({
     textAlign: 'center',
     cursor: 'pointer',
     textTransform: 'uppercase',
+    fontSize: 14,
   },
   signWrapper: {
     padding: 15,

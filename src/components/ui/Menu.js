@@ -14,9 +14,9 @@ const componentStyles = StyleSheet.create({
   li: {
     listStyleType: 'none',
     width: '100%',
-    borderBottom: `1px solid ${colours.clouds}`,
-    ':last-child': {
-      borderBottom: 'none',
+    borderTop: `1px solid ${colours.clouds}`,
+    ':first-child': {
+      borderTop: 'none',
     },
   },
   addFriend: {
@@ -56,7 +56,7 @@ export default class Menu extends Component {
           <Link className={css(addFriend)} to="/dashboard/getPublicKey">Copy Public Key</Link>
         </li>
         <li className={css(componentStyles.li)}>
-          <a className={css(addFriend)}>Verify</a>
+          <Link to="/dashboard/decrypt" className={css(addFriend)}>Decrypt</Link>
         </li>
       </ul>
     );
