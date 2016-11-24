@@ -6,6 +6,16 @@ Simple-PGP is a desktop application which you can use to manage your PGP keys, c
 
 Simple PGP is an open source option for using PGP encryption and is built with React, Electron and Mobx. I hope you enjoy using it and please feel free to provide feedback as I'm sure there are still many things left to do on this project.
 
+## Features
+
+- Generate a new Key Pair
+- Import your existing Key Pair
+- Add Contacts to your contact list for fast encryption
+- Create encrypted messages to any contact
+- Decrypt any encrypted messages easily with your Private Key
+- Sign messages so people know you sent it
+- Easily get your public key to send to others
+
 ## Download
 
 You can find download options for Windows, OSX and Linux on the releases page of this repo located here: https://github.com/Tasemu/Simple-PGP/releases
