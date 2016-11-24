@@ -1,43 +1,14 @@
-const webpack = require('webpack');
 const webpackTargetElectronRenderer = require('webpack-target-electron-renderer');
-const path = require('path');
+const dev = require('./webpack.config.development.js');
+const prod = require('./webpack.config.production.js');
 
-const config = {
-  entry: [
-    'webpack-hot-middleware/client?reload=true&path=http://localhost:9000/__webpack_hmr',
-    'react-hot-loader/patch',
-    './src/index',
-  ],
-  module: {
-    loaders: [
-      {
-        test: /\.jsx?$/,
-        loaders: ['babel-loader'],
-        exclude: /node_modules/,
-      }, {
-        test: /\.png|\.svg$/,
-        loaders: ['file-loader'],
-      },
-      {
-        test: /\.css$/,
-        loader: 'style-loader!css-loader',
-      },
-    ],
-  },
-  output: {
-    path: `${__dirname}/dist`,
-    publicPath: 'http://localhost:9000/dist/',
-    filename: 'bundle.js',
-  },
-  resolve: {
-    root: path.resolve('./src'),
-    extensions: ['', '.js', '.jsx'],
-  },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-  ],
-};
+let config;
 
-config.target = webpackTargetElectronRenderer(config);
+if (process.env.ENV === 'development') {
+  config = dev;
+  config.target = webpackTargetElectronRenderer(config);
+} else {
+  config = prod;
+}
 
 module.exports = config;

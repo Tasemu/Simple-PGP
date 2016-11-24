@@ -1,10 +1,11 @@
 {
-  "name": "electron-quick-start",
+  "name": "Simple-PGP",
   "version": "1.0.0",
-  "description": "A minimal Electron application",
+  "description": "An easy application for using PGP",
   "main": "main.js",
   "scripts": {
     "start": "ENV=development electron .",
+    "prod": "electron .",
     "server": "concurrently -k 'babel-node server.js' 'npm start'"
   },
   "babel": {
@@ -18,16 +19,14 @@
       "react-hot-loader/babel"
     ]
   },
-  "repository": "https://github.com/electron/electron-quick-start",
+  "repository": "https://github.com/Tasemu/Simple-PGP",
   "keywords": [
-    "Electron",
-    "quick",
-    "start",
-    "tutorial",
-    "demo"
+    "pgp",
+    "encryption",
+    "keychain"
   ],
-  "author": "GitHub",
-  "license": "CC0-1.0",
+  "author": "Montague Monro",
+  "license": "MIT",
   "devDependencies": {
     "babel-cli": "^6.18.0",
     "babel-eslint": "6",

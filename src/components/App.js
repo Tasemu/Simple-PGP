@@ -15,12 +15,14 @@ import Decrypt from 'components/Decrypt';
 import Import from 'components/Import';
 import { colours } from 'utils/constants';
 
-enableLogging({
-  action: true,
-  reaction: true,
-  transaction: true,
-  compute: true,
-});
+if (process.env.ENV === 'development') {
+  enableLogging({
+    action: true,
+    reaction: true,
+    transaction: true,
+    compute: true,
+  });
+}
 
 const componentStyles = StyleSheet.create({
   component: {
@@ -37,7 +39,6 @@ const checkAuth = (nextState, replace) => {
 };
 
 const setUiMode = (mode) => {
-  console.log('uiMode', mode);
   appStore.uiMode = mode;
 };
 
