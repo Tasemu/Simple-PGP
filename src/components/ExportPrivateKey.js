@@ -39,7 +39,7 @@ const componentStyles = StyleSheet.create({
 
 @inject('appStore')
 @observer
-export default class GetPublicKey extends Component {
+export default class ExportPrivateKey extends Component {
 
   static propTypes = {
     appStore: MobxPropTypes.objectOrObservableObject,
@@ -63,7 +63,7 @@ export default class GetPublicKey extends Component {
         <div className={css(componentStyles.inputWrapper)}>
           <textarea
             className={css(componentStyles.input)}
-            value={this.props.appStore.publicKey}
+            value={this.props.appStore.privateKey}
             readOnly
           />
         </div>

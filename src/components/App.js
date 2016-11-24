@@ -11,6 +11,7 @@ import Info from 'components/ui/Info';
 import AddFriendForm from 'components/AddFriendForm';
 import EncryptMessage from 'components/EncryptMessage';
 import GetPublicKey from 'components/GetPublicKey';
+import ExportPrivateKey from 'components/ExportPrivateKey';
 import Decrypt from 'components/Decrypt';
 import Import from 'components/Import';
 import { colours } from 'utils/constants';
@@ -52,6 +53,7 @@ const routes = (
       <Route path="addfriend" component={AddFriendForm} onEnter={() => setUiMode('addFriend')} />
       <Route path="encrypt/:id" component={EncryptMessage} onEnter={() => setUiMode('encrypt')} />
       <Route path="getPublicKey" component={GetPublicKey} onEnter={() => setUiMode('getPublicKey')} />
+      <Route path="exportPrivateKey" component={ExportPrivateKey} onEnter={() => setUiMode('exportPrivateKey')} />
       <Route path="decrypt" component={Decrypt} onEnter={() => setUiMode('decrypt')} />
     </Route>
   </Route>
