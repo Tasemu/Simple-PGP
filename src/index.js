@@ -2,9 +2,9 @@ import 'babel-polyfill'; // generators
 import React from 'react';
 import { render as renderReact } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
-import App from './components/App';
+import 'normalize.css';
 
-require('normalize.css');
+import App from './components/App';
 
 renderReact(
   <AppContainer>

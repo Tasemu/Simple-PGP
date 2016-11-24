@@ -75,4 +75,4 @@ autorunAsync(() => {
   jetpack.write(`${remote.app.getPath('home')}/simplepgp.json`, toJS(singleton.dehydrate));
 }, 500);
 
-export default singleton;
+export default window.appStore = singleton;

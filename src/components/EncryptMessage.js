@@ -43,6 +43,18 @@ const componentStyles = StyleSheet.create({
   checkbox: {
     marginRight: 5,
   },
+  passphrase: {
+    outline: 'none',
+    border: 'none',
+    borderBottom: `1px solid ${colours.midnightBlue}`,
+    margin: 15,
+    marginBottom: 0,
+    paddingBottom: 10,
+  },
+  checkboxSpan: {
+    fontSize: 14,
+    textTransform: 'uppercase',
+  },
 });
 
 @inject('appStore')
@@ -58,6 +70,7 @@ export default class EncryptMessage extends Component {
 
   state = {
     message: '',
+    passphrase: '',
     encrypted: false,
     sign: false,
   }
@@ -68,10 +81,14 @@ export default class EncryptMessage extends Component {
   }
 
   handleSubmit = (e) => {
+    const privateKey = openpgp.key.readArmored(this.props.appStore.privateKey).keys[0];
+    if (this.state.sign) {
+      privateKey.decrypt(this.state.passphrase);
+    }
     openpgp.encrypt({
       data: this.state.message,
       publicKeys: openpgp.key.readArmored(this.user.publicKey).keys,
-      privateKeys: this.state.sign && openpgp.key.readArmored(this.props.appStore.privateKey).keys,
+      privateKeys: this.state.sign && privateKey,
     }).then(ciphertext => (
       this.setState({
         message: ciphertext.data,
@@ -91,6 +108,12 @@ export default class EncryptMessage extends Component {
   handleCheckboxChange = (e) => {
     this.setState({
       sign: e.target.checked,
+    });
+  }
+
+  handlePassphraseChange = (e) => {
+    this.setState({
+      passphrase: e.target.value,
     });
   }
 
@@ -119,14 +142,30 @@ export default class EncryptMessage extends Component {
             onChange={this.handleInputChange}
             value={this.state.message}
           />
-          <div className={css(componentStyles.signWrapper)}>
-            <input
-              className={css(componentStyles.checkbox)}
-              type="checkbox"
-              onChange={this.handleCheckboxChange}
-            />
-            <span>Sign Message?</span>
-          </div>
+          {
+            this.state.sign && (
+              <input
+                className={css(componentStyles.passphrase)}
+                type="password"
+                placeholder="Passphrase for your private key"
+                value={this.state.passphrase}
+                onChange={this.handlePassphraseChange}
+              />
+            )
+          }
+          {
+            !this.state.encrypted && (
+              <div className={css(componentStyles.signWrapper)}>
+                <input
+                  className={css(componentStyles.checkbox)}
+                  type="checkbox"
+                  onChange={this.handleCheckboxChange}
+                  checked={this.state.sign}
+                />
+                <span className={css(componentStyles.checkboxSpan)}>Sign Message?</span>
+              </div>
+            )
+          }
         </div>
         {button}
       </form>

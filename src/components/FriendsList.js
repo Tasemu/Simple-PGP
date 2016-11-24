@@ -4,6 +4,7 @@ import { css, StyleSheet } from 'aphrodite';
 import { Link } from 'react-router';
 import { colours } from 'utils/constants';
 import Friend from 'components/Friend';
+import Menu from 'components/ui/Menu';
 
 const componentStyles = StyleSheet.create({
   friendsList: {
@@ -19,16 +20,6 @@ const componentStyles = StyleSheet.create({
     flexGrow: 1,
     overflowY: 'auto',
   },
-  addFriend: {
-    padding: 15,
-    textAlign: 'center',
-    display: 'block',
-    cursor: 'pointer',
-    textTransform: 'uppercase',
-    backgroundColor: colours.midnightBlue,
-    color: colours.clouds,
-    textDecoration: 'none',
-  },
 });
 
 @inject('appStore')
@@ -39,30 +30,18 @@ export default class FriendsList extends Component {
     appStore: MobxPropTypes.objectOrObservableObject.isRequired,
   }
 
-  toggleFriendMode = () => {
-    const { uiMode } = this.props.appStore;
-    this.props.appStore.uiMode = uiMode !== 'addFriend' ? 'addFriend' : 'default';
-  }
-
   render() {
-    const { friends, uiMode } = this.props.appStore;
+    const { friends } = this.props.appStore;
     const friendComponents = friends.map(f => (
       <Friend key={f.id} friend={f} />
     ));
-    const addFriendText = (
-      <Link
-        onClick={this.toggleFriendMode}
-        to={uiMode === 'addFriend' ? '/dashboard' : '/dashboard/addFriend'}
-        className={css(componentStyles.addFriend)}
-      >{uiMode === 'addFriend' ? '- Cancel' : '+ Add Friend'}</Link>
-    );
 
     return (
       <div className={css(componentStyles.friendsList)}>
         <ul className={css(componentStyles.list)}>
           {friendComponents}
         </ul>
-        {addFriendText}
+        <Menu />
       </div>
     );
   }

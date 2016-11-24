@@ -18,7 +18,7 @@ const componentStyles = StyleSheet.create({
 export default class Button extends Component {
 
   static propTypes = {
-    text: PropTypes.String,
+    text: PropTypes.string,
   }
 
   render() {
