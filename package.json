@@ -7,8 +7,8 @@
     "start": "ENV=development electron .",
     "prod": "electron .",
     "server": "concurrently -k 'babel-node server.js' 'npm start'",
-    "package": "electron-packager . --platform mas --out ./bin",
-    "package-all": "electron-packager . --all --out ./bin"
+    "package": "webpack && electron-packager . --platform mas --out ./bin",
+    "package-all": "webpack && electron-packager . --all --out ./bin"
   },
   "babel": {
     "presets": [
