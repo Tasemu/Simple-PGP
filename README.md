@@ -21,6 +21,32 @@ Simple PGP is an open source option for using PGP encryption and is built with R
 
 You can find download options for Windows, OSX and Linux on the releases page of this repo located here: https://github.com/Tasemu/Simple-PGP/releases
 
+## How to build
+
+Clone the repo
+
+```
+git clone https://github.com/Tasemu/Simple-PGP.git
+```
+
+Install depencies
+
+```
+npm install
+```
+
+Run development server
+
+```
+npm run server
+```
+
+Package for production
+
+```
+npm run package
+```
+
 ## Maintainers
 
 So far this project is maintained by me alone. Though i'm always open to help. :)
