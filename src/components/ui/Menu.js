@@ -32,6 +32,9 @@ const componentStyles = StyleSheet.create({
     backgroundColor: colours.midnightBlue,
     color: colours.clouds,
   },
+  menuClosed: {
+    overflow: 'hidden',
+  },
   menuOpen: {
     height: '100%',
   },
@@ -76,7 +79,7 @@ export default class Menu extends Component {
         <ul
           className={css(
             component,
-            this.state.menuOpen && componentStyles.menuOpen,
+            this.state.menuOpen ? componentStyles.menuOpen : componentStyles.menuClosed,
           )}
         >
           <li className={css(componentStyles.li, componentStyles.fullButton)}>{addFriendButton}</li>
