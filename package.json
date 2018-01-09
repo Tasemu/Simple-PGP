@@ -7,8 +7,9 @@
     "start": "ENV=development electron .",
     "prod": "electron .",
     "server": "concurrently -k 'babel-node server.js' 'npm start'",
-    "package": "webpack && electron-packager . --platform mas --out ./bin",
-    "package-all": "webpack && electron-packager . --all --out ./bin"
+    "package": "webpack && electron-packager . --platform mas --icon=resources/icons/logo --out ./bin",
+    "package-darwin": "webpack && electron-packager . --platform darwin --icon=resources/icons/logo --out ./bin",
+    "package-all": "webpack && electron-packager . --all --icon=resources/icons/logo --out ./bin"
   },
   "babel": {
     "presets": [
@@ -40,6 +41,7 @@
     "babel-preset-stage-0": "^6.16.0",
     "concurrently": "^3.1.0",
     "electron": "^1.4.1",
+    "electron-packager": "^10.1.1",
     "eslint": "3.x",
     "eslint-config-airbnb": "^13.0.0",
     "eslint-plugin-import": "^2.2.0",
