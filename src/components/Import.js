@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
     border: 'none',
     background: colours.white,
     padding: 15,
+    marginBottom: 15,
     color: colours.black,
     flexGrow: 1,
   },
@@ -38,13 +39,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     cursor: 'pointer',
     textDecoration: 'none',
-  },
-  passphrase: {
-    outline: 'none',
-    border: 'none',
-    margin: 15,
-    marginBottom: 0,
-    paddingBottom: 15,
   },
 });
 
@@ -62,18 +56,11 @@ export default class Import extends Component {
 
   state = {
     privateKey: '',
-    passphrase: '',
   }
 
   handlePrivateKeyChange = (e) => {
     this.setState({
       privateKey: e.target.value,
-    });
-  }
-
-  handlePassphraseChange = (e) => {
-    this.setState({
-      passphrase: e.target.value,
     });
   }
 
@@ -98,12 +85,6 @@ export default class Import extends Component {
             rows="15"
             value={this.state.privateKey}
             onChange={this.handlePrivateKeyChange}
-          />
-          <input
-            className={css(styles.passphrase)}
-            value={this.state.passphrase}
-            onChange={this.handlePassphraseChange}
-            placeholder="Passphrase for Private Key"
           />
           <a onClick={this.importPrivateKey} className={css(styles.button)}>Import Private Key</a>
         </div>
