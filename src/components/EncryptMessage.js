@@ -86,8 +86,9 @@ export default class EncryptMessage extends Component {
     if (this.state.sign) {
       privateKey.decrypt(this.state.passphrase);
     }
+    const message = this.state.message.replace(/\n?$/, '\n');
     openpgp.encrypt({
-      data: this.state.message,
+      data: message,
       publicKeys: openpgp.key.readArmored(this.user.publicKey).keys,
       privateKeys: this.state.sign && privateKey,
     }).then(ciphertext => (
