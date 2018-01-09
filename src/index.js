@@ -3,6 +3,7 @@ import React from 'react';
 import { render as renderReact } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import 'normalize.css';
+import './configpgp';
 
 import App from './components/App';
 
