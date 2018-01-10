@@ -30,10 +30,14 @@ export default class FriendsList extends Component {
     appStore: MobxPropTypes.objectOrObservableObject.isRequired,
   }
 
+  removeFriend = (id) => {
+    this.props.appStore.removeFriend(id);
+  }
+
   render() {
     const { friends } = this.props.appStore;
     const friendComponents = friends.map(f => (
-      <Friend key={f.id} friend={f} />
+      <Friend key={f.id} friend={f} onRemove={this.removeFriend} />
     ));
 
     return (

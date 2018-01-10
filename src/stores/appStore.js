@@ -74,6 +74,12 @@ class AppStore {
   @action('addFriend') addFriend(publicKey) {
     this.friends.push(readPublicKey(publicKey));
   }
+
+  @action('removeFriend') removeFriend(deleteId) {
+    this.friends = this.friends.filter(friend => (
+      friend.id !== deleteId
+    ));
+  }
 }
 
 const singleton = new AppStore(appStoreHydrated || {});
