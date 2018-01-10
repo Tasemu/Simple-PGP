@@ -3,6 +3,10 @@ import { css, StyleSheet } from 'aphrodite';
 import { inject, observer, PropTypes as MobxPropTypes } from 'mobx-react';
 import { colours } from 'utils/constants';
 
+const { remote } = require('electron');
+
+const { dialog } = remote;
+
 const componentStyles = StyleSheet.create({
   form: {
     width: '100%',
@@ -47,12 +51,16 @@ export default class AddFriendForm extends Component {
   }
 
   handleSubmit = (e) => {
-    this.props.appStore.addFriend(this.state.key);
-    this.setState({
-      key: '',
-    });
-    this.props.appStore.uiMode = 'default';
-    this.context.router.push('/dashboard');
+    try {
+      this.props.appStore.addFriend(this.state.key);
+      this.setState({
+        key: '',
+      });
+      this.props.appStore.uiMode = 'default';
+      this.context.router.push('/dashboard');
+    } catch (err) {
+      dialog.showErrorBox('Error', err.message);
+    }
     e.preventDefault();
   }
 

@@ -4,7 +4,9 @@ import { inject, observer, PropTypes as MobxPropTypes } from 'mobx-react';
 import { colours } from 'utils/constants';
 
 const openpgp = require('openpgp');
-const { clipboard } = require('electron');
+const { remote, clipboard } = require('electron');
+
+const { dialog } = remote;
 
 const componentStyles = StyleSheet.create({
   form: {
@@ -96,7 +98,9 @@ export default class EncryptMessage extends Component {
         encrypted: true,
         sign: false,
       })
-    ));
+    )).catch((err) => {
+      dialog.showErrorBox('Error', err.message);
+    });
     e.preventDefault();
   }
 
@@ -159,11 +163,12 @@ export default class EncryptMessage extends Component {
               <div className={css(componentStyles.signWrapper)}>
                 <input
                   className={css(componentStyles.checkbox)}
+                  id="password"
                   type="checkbox"
                   onChange={this.handleCheckboxChange}
                   checked={this.state.sign}
                 />
-                <span className={css(componentStyles.checkboxSpan)}>Sign Message?</span>
+                <label htmlFor="password" className={css(componentStyles.checkboxSpan)}>Sign Message?</label>
               </div>
             )
           }

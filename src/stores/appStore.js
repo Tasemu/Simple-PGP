@@ -36,7 +36,7 @@ class AppStore {
   }
 
   @computed get loggedIn() {
-    return !!this.email;
+    return !!this.privateKey;
   }
 
   @computed get dehydrate() {

@@ -55,13 +55,19 @@ export default class Menu extends Component {
     });
   }
 
+  closeMenu = () => {
+    this.setState({
+      menuOpen: false,
+    });
+  }
+
   render() {
     const { uiMode } = this.props.appStore;
     const { addFriend, component } = componentStyles;
     const addFriendButton = uiMode === 'addFriend' ? (
-      <Link to="/dashboard" className={css(addFriend)}>- Cancel</Link>
+      <Link onClick={this.closeMenu} to="/dashboard" className={css(addFriend)}>- Cancel</Link>
     ) : (
-      <Link to="/dashboard/addFriend" className={css(addFriend)}>+ Add Friend</Link>
+      <Link onClick={this.closeMenu} to="/dashboard/addFriend" className={css(addFriend)}>+ Add Friend</Link>
     );
 
     return (
@@ -79,15 +85,17 @@ export default class Menu extends Component {
             this.state.menuOpen && componentStyles.menuOpen,
           )}
         >
-          <li className={css(componentStyles.li, componentStyles.fullButton)}>{addFriendButton}</li>
-          <li className={css(componentStyles.li)}>
-            <Link to="/dashboard/decrypt" className={css(addFriend)}>Decrypt</Link>
+          <li className={css(componentStyles.li, componentStyles.fullButton)}>
+            {addFriendButton}
           </li>
           <li className={css(componentStyles.li)}>
-            <Link className={css(addFriend)} to="/dashboard/getPublicKey">Copy Public Key</Link>
+            <Link to="/dashboard/decrypt" onClick={this.closeMenu} className={css(addFriend)}>Decrypt</Link>
           </li>
           <li className={css(componentStyles.li)}>
-            <Link to="/dashboard/exportPrivateKey" className={css(componentStyles.addFriend)}>Export Private Key</Link>
+            <Link to="/dashboard/getPublicKey" onClick={this.closeMenu} className={css(addFriend)}>Copy Public Key</Link>
+          </li>
+          <li className={css(componentStyles.li)}>
+            <Link to="/dashboard/exportPrivateKey" onClick={this.closeMenu} className={css(componentStyles.addFriend)}>Export Private Key</Link>
           </li>
         </ul>
       </div>
