@@ -4,6 +4,9 @@ import { inject, observer, PropTypes as MobxPropTypes } from 'mobx-react';
 import { colours } from 'utils/constants';
 
 const openpgp = require('openpgp');
+const { remote } = require('electron');
+
+const { dialog } = remote;
 
 const componentStyles = StyleSheet.create({
   form: {
@@ -74,15 +77,21 @@ export default class EncryptMessage extends Component {
     if (this.state.message.length) {
       const privateKey = openpgp.key.readArmored(this.props.appStore.privateKey).keys[0];
       privateKey.decrypt(this.state.passphrase);
-      openpgp.decrypt({
-        message: openpgp.message.readArmored(this.state.message),
-        privateKey,
-      }).then(plaintext => (
+      new Promise((resolve) => {
+        resolve(openpgp.message.readArmored(this.state.message));
+      }).then(message => (
+        openpgp.decrypt({
+          message,
+          privateKey,
+        })
+      )).then(plaintext => (
         this.setState({
           message: plaintext.data,
           decrypted: true,
         })
-      ));
+      )).catch((err) => {
+        dialog.showErrorBox('Error', err.message);
+      });
     }
   }
 
